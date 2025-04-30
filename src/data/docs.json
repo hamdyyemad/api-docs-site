@@ -1,0 +1,151 @@
+{
+  "sidebar": {
+    "gettingStarted": {
+      "title": "Getting Started",
+      "items": [
+        {
+          "id": "introduction",
+          "title": "Introduction",
+          "path": "/docs/introduction"
+        },
+        {
+          "id": "installation",
+          "title": "Installation",
+          "path": "/docs/installation"
+        }
+      ]
+    },
+    "api": {
+      "title": "API Reference",
+      "items": [
+        {
+          "id": "market-data",
+          "title": "Market Data",
+          "path": "/docs/market-data"
+        }
+      ]
+    }
+  },
+  "pages": {
+    "introduction": {
+      "title": "Introduction to MVC .NET",
+      "content": [
+        {
+          "type": "text",
+          "content": "# Welcome to MVC .NET\n\nThe Model-View-Controller (MVC) pattern is an architectural pattern that separates an application into three main logical components: the model, the view, and the controller. Each of these components is built to handle specific development aspects of an application."
+        },
+        {
+          "type": "text",
+          "content": "## Key Components\n\n- **Models**: Handle data logic\n- **Views**: Handle display logic\n- **Controllers**: Handle request flow"
+        },
+        {
+          "type": "code",
+          "language": "csharp",
+          "content": "// Basic Controller Example\npublic class HomeController : Controller {\n    private readonly ILogger<HomeController> _logger;\n\n    public HomeController(ILogger<HomeController> logger) {\n        _logger = logger;\n    }\n\n    public IActionResult Index() {\n        return View();\n    }\n}"
+        },
+        {
+          "type": "text",
+          "content": "## Getting Started\n\nFollow our installation guide to set up your first MVC .NET application. You'll learn how to:\n\n1. Set up your development environment\n2. Create a new MVC project\n3. Understand the project structure\n4. Run your first application"
+        }
+      ]
+    },
+    "installation": {
+      "title": "Installation Guide",
+      "content": [
+        {
+          "type": "text",
+          "content": "# Setting Up Your Development Environment\n\nBefore you can start developing with MVC .NET, you'll need to set up your development environment."
+        },
+        {
+          "type": "text",
+          "content": "## Prerequisites\n\n1. **.NET SDK**: Download and install the latest .NET SDK\n2. **IDE**: Install Visual Studio or Visual Studio Code\n3. **Git**: Version control system"
+        },
+        {
+          "type": "code",
+          "language": "bash",
+          "content": "# Create a new MVC project\ndotnet new mvc -n MyMvcApp\ncd MyMvcApp\n\n# Run the application\ndotnet run"
+        }
+      ]
+    },
+    "market-data": {
+      "title": "Market Data API",
+      "content": [
+        {
+          "type": "text",
+          "content": "# Market Data API\n\nAccess real-time and historical market data through our REST API endpoints."
+        },
+        {
+          "type": "table",
+          "title": "Rate Limits",
+          "headers": ["Endpoint Type", "Rate Limit", "Time Window", "Notes"],
+          "rows": [
+            ["Public Market Data", "120 requests", "1 minute", "Applies to all ticker endpoints"],
+            ["Historical Data", "60 requests", "1 minute", "Includes OHLCV and trade history"],
+            ["WebSocket Feed", "Unlimited", "N/A", "Real-time market data updates"],
+            ["Aggregated Data", "30 requests", "1 minute", "Market statistics and summaries"]
+          ]
+        },
+        {
+          "type": "api-endpoint",
+          "method": "GET",
+          "path": "/api/v2/ticker/{market_symbol}/",
+          "description": "Get the latest ticker information for a specific market symbol.",
+          "parameters": [
+            {
+              "name": "market_symbol",
+              "type": "string",
+              "required": true,
+              "description": "The market symbol to get ticker information for (e.g., BTC-USD)"
+            }
+          ],
+          "response": {
+            "type": "application/json",
+            "example": {
+              "last": "2211.00",
+              "high": "2811.00",
+              "low": "2188.97",
+              "vwap": "2189.80",
+              "volume": "213.26801100",
+              "bid": "2188.97",
+              "ask": "2211.00",
+              "timestamp": "1643640186",
+              "open": "2211.00",
+              "open_24": "2211.00",
+              "percent_change_24": "13.57",
+              "side": "0"
+            }
+          }
+        },
+        {
+          "type": "table",
+          "title": "Response Parameters",
+          "headers": ["Parameter", "Type", "Description"],
+          "rows": [
+            ["last", "string", "Last traded price"],
+            ["high", "string", "24-hour high price"],
+            ["low", "string", "24-hour low price"],
+            ["vwap", "string", "Volume-weighted average price"],
+            ["volume", "string", "24-hour trading volume"],
+            ["bid", "string", "Current highest bid price"],
+            ["ask", "string", "Current lowest ask price"],
+            ["timestamp", "string", "Unix timestamp in seconds"],
+            ["open", "string", "Opening price"],
+            ["open_24", "string", "24-hour opening price"],
+            ["percent_change_24", "string", "24-hour price change percentage"],
+            ["side", "string", "Last trade side (0: Buy, 1: Sell)"]
+          ]
+        },
+        {
+          "type": "code",
+          "language": "bash",
+          "content": "curl -X GET \"https://api.example.com/api/v2/ticker/BTC-USD/\""
+        },
+        {
+          "type": "code",
+          "language": "javascript",
+          "content": "const response = await fetch('https://api.example.com/api/v2/ticker/BTC-USD/');\nconst data = await response.json();\nconsole.log(data);"
+        }
+      ]
+    }
+  }
+} 
