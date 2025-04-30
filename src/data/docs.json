@@ -24,6 +24,61 @@
           "path": "/docs/market-data"
         }
       ]
+    },
+    "rootConfig": {
+      "title": "Root Configurations",
+      "items": [
+        {
+          "id": "program-cs",
+          "title": "Program.cs",
+          "path": "/docs/program-cs"
+        },
+        {
+          "id": "appsettings-json",
+          "title": "appsettings.json",
+          "path": "/docs/appsettings-json"
+        }
+      ]
+    },
+    "controllers": {
+      "title": "Controllers",
+      "items": [
+        {
+          "id": "employee-dashboard-controller",
+          "title": "EmployeeDashboardController",
+          "path": "/docs/employee-dashboard-controller"
+        }
+      ]
+    },
+    "wwwroot": {
+      "title": "wwwroot",
+      "items": [
+        {
+          "id": "cities-json",
+          "title": "cities.json",
+          "path": "/docs/cities-json"
+        },
+        {
+          "id": "quotes-json",
+          "title": "quotes.json",
+          "path": "/docs/quotes-json"
+        },
+        {
+          "id": "get-employee-js",
+          "title": "getEmployee.js",
+          "path": "/docs/get-employee-js"
+        }
+      ]
+    },
+    "views": {
+      "title": "Views",
+      "items": [
+        {
+          "id": "employee-dashboard-view",
+          "title": "EmployeeDashboard",
+          "path": "/docs/employee-dashboard-view"
+        }
+      ]
     }
   },
   "pages": {
@@ -144,6 +199,112 @@
           "type": "code",
           "language": "javascript",
           "content": "const response = await fetch('https://api.example.com/api/v2/ticker/BTC-USD/');\nconst data = await response.json();\nconsole.log(data);"
+        }
+      ]
+    },
+    "program-cs": {
+      "title": "Program.cs Configuration",
+      "content": [
+        {
+          "type": "text",
+          "content": "# Program.cs\n\nThis is the entry point of your .NET application. It configures the web host and sets up the application services."
+        },
+        {
+          "type": "code",
+          "language": "csharp",
+          "content": "var builder = WebApplication.CreateBuilder(args);\n\n// Add services to the container.\nbuilder.Services.AddControllersWithViews();\n\nvar app = builder.Build();\n\n// Configure the HTTP request pipeline.\nif (!app.Environment.IsDevelopment())\n{\n    app.UseExceptionHandler(\"/Home/Error\");\n    app.UseHsts();\n}\n\napp.UseHttpsRedirection();\napp.UseStaticFiles();\n\napp.UseRouting();\n\napp.UseAuthorization();\n\napp.MapControllerRoute(\n    name: \"default\",\n    pattern: \"{controller=Home}/{action=Index}/{id?}\");\n\napp.Run();"
+        }
+      ]
+    },
+    "appsettings-json": {
+      "title": "appsettings.json Configuration",
+      "content": [
+        {
+          "type": "text",
+          "content": "# appsettings.json\n\nThis file contains the application configuration settings."
+        },
+        {
+          "type": "code",
+          "language": "json",
+          "content": "{\n  \"Logging\": {\n    \"LogLevel\": {\n      \"Default\": \"Information\",\n      \"Microsoft.AspNetCore\": \"Warning\"\n    }\n  },\n  \"AllowedHosts\": \"*\",\n  \"ConnectionStrings\": {\n    \"DefaultConnection\": \"Server=localhost;Database=EmployeeDB;Trusted_Connection=True;\"\n  }\n}"
+        }
+      ]
+    },
+    "cities-json": {
+      "title": "cities.json",
+      "content": [
+        {
+          "type": "text",
+          "content": "# cities.json\n\nThis file contains city data used in the application."
+        },
+        {
+          "type": "code",
+          "language": "json",
+          "content": "{\n  \"cities\": [\n    {\n      \"id\": 1,\n      \"name\": \"New York\",\n      \"population\": 8336817\n    },\n    {\n      \"id\": 2,\n      \"name\": \"Los Angeles\",\n      \"population\": 3979576\n    }\n  ]\n}"
+        }
+      ]
+    },
+    "quotes-json": {
+      "title": "quotes.json",
+      "content": [
+        {
+          "type": "text",
+          "content": "# quotes.json\n\nThis file contains inspirational quotes used in the application."
+        },
+        {
+          "type": "code",
+          "language": "json",
+          "content": "{\n  \"quotes\": [\n    {\n      \"id\": 1,\n      \"text\": \"The only way to do great work is to love what you do.\",\n      \"author\": \"Steve Jobs\"\n    },\n    {\n      \"id\": 2,\n      \"text\": \"Innovation distinguishes between a leader and a follower.\",\n      \"author\": \"Steve Jobs\"\n    }\n  ]\n}"
+        }
+      ]
+    },
+    "get-employee-js": {
+      "title": "getEmployee.js",
+      "content": [
+        {
+          "type": "text",
+          "content": "# getEmployee.js\n\nThis JavaScript file handles employee data retrieval."
+        },
+        {
+          "type": "code",
+          "language": "javascript",
+          "content": "async function getEmployeeData(employeeId) {\n  try {\n    const response = await fetch(`/api/employees/${employeeId}`);\n    if (!response.ok) {\n      throw new Error('Failed to fetch employee data');\n    }\n    const data = await response.json();\n    return data;\n  } catch (error) {\n    console.error('Error:', error);\n    throw error;\n  }\n}"
+        }
+      ]
+    },
+    "employee-dashboard-controller": {
+      "title": "EmployeeDashboardController",
+      "content": [
+        {
+          "type": "text",
+          "content": "# EmployeeDashboardController\n\nThis controller handles all employee dashboard related operations."
+        },
+        {
+          "type": "text",
+          "content": "## Related Files\n\n- <Link to='/docs/$pageId' params={{ pageId: 'employee-dashboard-view' }}>Go to Related View</Link> - View the corresponding EmployeeDashboard view"
+        },
+        {
+          "type": "code",
+          "language": "csharp",
+          "content": "// EmployeeDashboardController.cs\nusing Microsoft.AspNetCore.Mvc;\n\nnamespace YourApp.Controllers\n{\n    public class EmployeeDashboardController : Controller\n    {\n        public IActionResult Index()\n        {\n            return View();\n        }\n\n        [HttpGet]\n        public IActionResult GetEmployee(int id)\n        {\n            // Dummy data\n            var employee = new\n            {\n                Id = id,\n                Name = \"John Doe\",\n                Position = \"Software Engineer\",\n                Department = \"IT\",\n                Salary = 75000\n            };\n\n            return Json(employee);\n        }\n    }\n}"
+        }
+      ]
+    },
+    "employee-dashboard-view": {
+      "title": "EmployeeDashboard View",
+      "content": [
+        {
+          "type": "text",
+          "content": "# EmployeeDashboard View\n\nThis view displays the employee dashboard interface."
+        },
+        {
+          "type": "text",
+          "content": "## Related Files\n\n- <Link to='/docs/$pageId' params={{ pageId: 'employee-dashboard-controller' }}>Go to Related Controller</Link> - View the corresponding EmployeeDashboardController"
+        },
+        {
+          "type": "code",
+          "language": "html",
+          "content": "@* EmployeeDashboard.cshtml *@\n@{\n    ViewData[\"Title\"] = \"Employee Dashboard\";\n}\n\n<div class=\"container\">\n    <h1>Employee Dashboard</h1>\n    <div class=\"employee-info\">\n        <h2>Employee Details</h2>\n        <div id=\"employeeData\">\n            <!-- Employee data will be loaded here -->\n        </div>\n    </div>\n</div>\n\n@section Scripts {\n    <script src=\"~/js/getEmployee.js\"></script>\n}"
         }
       ]
     }
