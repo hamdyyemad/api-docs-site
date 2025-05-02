@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
+
 import { useEffect, useState } from 'react'
 import { useNavigate } from '@tanstack/react-router'
 import docsData from '../../data/docs.json'
