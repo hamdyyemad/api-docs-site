@@ -4,6 +4,7 @@ import { RouterProvider, createRouter } from '@tanstack/react-router'
 
 // Import the generated route tree
 import { routeTree } from './routeTree.gen'
+import { ErrorComponent } from './components/ErrorComponent'
 
 import './styles.css'
 import reportWebVitals from './reportWebVitals.ts'
@@ -16,6 +17,7 @@ const router = createRouter({
   scrollRestoration: true,
   defaultStructuralSharing: true,
   defaultPreloadStaleTime: 0,
+  defaultErrorComponent: ErrorComponent,
 })
 
 // Register the router instance for type safety

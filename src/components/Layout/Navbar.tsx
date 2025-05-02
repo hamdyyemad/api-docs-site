@@ -3,12 +3,11 @@ import { useState, useEffect } from 'react'
 import { SearchModal } from './SearchModal'
 
 interface NavbarProps {
-  onMenuClick: () => void
   onToggleSidebar: () => void
   isSidebarOpen: boolean
 }
 
-const Navbar = ({ onMenuClick, onToggleSidebar, isSidebarOpen }: NavbarProps) => {
+const Navbar = ({ onToggleSidebar, isSidebarOpen }: NavbarProps) => {
   const router = useRouter()
   const isActive = (path: string) => router.state.location.pathname.startsWith(path)
   const [isSearchOpen, setIsSearchOpen] = useState(false)
@@ -29,8 +28,8 @@ const Navbar = ({ onMenuClick, onToggleSidebar, isSidebarOpen }: NavbarProps) =>
   return (
     <>
       <nav className="fixed top-0 left-0 right-0 h-16 bg-[#121212] border-b border-white/10 z-50">
-        <div className="container mx-auto px-4 h-full flex items-center justify-between">
-          <div className="flex items-center gap-4">
+        <div className="mx-auto px-4 h-full flex items-center justify-between">
+          <div className="flex items-center gap-6">
             <button
               onClick={onToggleSidebar}
               className="text-gray-400 hover:text-white cursor-pointer"

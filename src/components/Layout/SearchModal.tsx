@@ -21,13 +21,14 @@ export const SearchModal = ({ isOpen, onClose }: SearchModalProps) => {
   const navigate = useNavigate()
 
   // Create a flat list of all searchable items
-  const allItems = Object.entries(docsData.sidebar).flatMap(([section, { title: sectionTitle, items }]) =>
-    items.map(item => ({
-      id: item.id,
-      title: item.title,
-      path: `/docs/${item.id}`,
-      section: sectionTitle
-    }))
+  const allItems = Object.entries(docsData.sidebar).flatMap(
+    ([, { title: sectionTitle, items }]) =>
+      items.map((item) => ({
+        id: item.id,
+        title: item.title,
+        path: `/docs/${item.id}`,
+        section: sectionTitle,
+      })),
   )
 
   // Filter items based on search query
@@ -37,9 +38,10 @@ export const SearchModal = ({ isOpen, onClose }: SearchModalProps) => {
       return
     }
 
-    const filtered = allItems.filter(item =>
-      item.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      item.section.toLowerCase().includes(searchQuery.toLowerCase())
+    const filtered = allItems.filter(
+      (item) =>
+        item.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        item.section.toLowerCase().includes(searchQuery.toLowerCase()),
     )
     setResults(filtered)
     setSelectedIndex(0)
@@ -50,11 +52,11 @@ export const SearchModal = ({ isOpen, onClose }: SearchModalProps) => {
     switch (e.key) {
       case 'ArrowDown':
         e.preventDefault()
-        setSelectedIndex(prev => (prev + 1) % results.length)
+        setSelectedIndex((prev) => (prev + 1) % results.length)
         break
       case 'ArrowUp':
         e.preventDefault()
-        setSelectedIndex(prev => (prev - 1 + results.length) % results.length)
+        setSelectedIndex((prev) => (prev - 1 + results.length) % results.length)
         break
       case 'Enter':
         if (results[selectedIndex]) {
@@ -83,8 +85,18 @@ export const SearchModal = ({ isOpen, onClose }: SearchModalProps) => {
     <div className="fixed inset-0 bg-black/50 z-[100] flex items-start justify-center pt-24">
       <div className="bg-[#1a1a1a] w-full max-w-2xl mx-4 rounded-lg shadow-lg overflow-hidden">
         <div className="p-4 border-b border-white/10 flex items-center">
-          <svg className="w-5 h-5 text-gray-400 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+          <svg
+            className="w-5 h-5 text-gray-400 mr-3"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+            />
           </svg>
           <input
             autoFocus
@@ -95,9 +107,22 @@ export const SearchModal = ({ isOpen, onClose }: SearchModalProps) => {
             placeholder="Search documentation..."
             className="flex-1 bg-transparent border-0 outline-none text-white"
           />
-          <button onClick={onClose} className="ml-4 text-gray-400 hover:text-white cursor-pointer">
-            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+          <button
+            onClick={onClose}
+            className="ml-4 text-gray-400 hover:text-white cursor-pointer"
+          >
+            <svg
+              className="w-5 h-5"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M6 18L18 6M6 6l12 12"
+              />
             </svg>
           </button>
         </div>
@@ -115,7 +140,9 @@ export const SearchModal = ({ isOpen, onClose }: SearchModalProps) => {
                   }`}
                 >
                   <span className="font-medium">{result.title}</span>
-                  <span className="text-sm text-gray-500">{result.section}</span>
+                  <span className="text-sm text-gray-500">
+                    {result.section}
+                  </span>
                 </button>
               ))}
             </div>
@@ -132,4 +159,4 @@ export const SearchModal = ({ isOpen, onClose }: SearchModalProps) => {
       </div>
     </div>
   )
-} 
+}

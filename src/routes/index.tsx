@@ -1,4 +1,4 @@
-import { createFileRoute } from '@tanstack/react-router'
+import { createFileRoute, Link } from '@tanstack/react-router'
 import Layout from '../components/Layout/Layout'
 
 export const Route = createFileRoute('/')({
@@ -15,18 +15,19 @@ function Index() {
           Get started by exploring our guides and examples.
         </p>
         <div className="flex gap-6">
-          <a
-            href="/docs/introduction"
+          <Link
+            to="/docs/$pageId"
+            params={{ pageId: 'introduction' }}
             className="px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
           >
             Get Started
-          </a>
-          <a
-            href="/examples"
+          </Link>
+          <Link
+            to="/examples"
             className="px-6 py-3 border border-gray-600 text-gray-300 rounded-lg hover:border-gray-400 hover:text-white transition-colors"
           >
             View Examples
-          </a>
+          </Link>
         </div>
       </div>
     </Layout>
