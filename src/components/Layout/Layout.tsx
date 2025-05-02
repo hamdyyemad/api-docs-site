@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { useRouter } from '@tanstack/react-router'
 import Navbar from './Navbar'
 import Sidebar from './Sidebar'
@@ -21,10 +21,26 @@ const Breadcrumbs = () => {
       </a>
       {segments.map((segment, index) => (
         <div key={segment} className="flex items-center gap-2">
-          <svg className="w-3 h-3 text-gray-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+          <svg
+            className="w-3 h-3 text-gray-600"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M9 5l7 7-7 7"
+            />
           </svg>
-          <span className={index === segments.length - 1 ? 'text-white' : 'text-gray-400 hover:text-white'}>
+          <span
+            className={
+              index === segments.length - 1
+                ? 'text-white'
+                : 'text-gray-400 hover:text-white'
+            }
+          >
             {segment.charAt(0).toUpperCase() + segment.slice(1)}
           </span>
         </div>
@@ -38,9 +54,6 @@ const Layout = ({ children }: LayoutProps) => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
 
   const toggleSidebar = () => setIsSidebarOpen(!isSidebarOpen)
-  const toggleMobileMenu = () => {
-    setIsMobileMenuOpen(!isMobileMenuOpen)
-  }
 
   // Prevent body scroll when mobile menu is open
   useEffect(() => {
@@ -56,17 +69,13 @@ const Layout = ({ children }: LayoutProps) => {
 
   return (
     <div className="min-h-screen bg-[#121212] text-white">
-      <Navbar 
-        onMenuClick={toggleMobileMenu} 
-        onToggleSidebar={toggleSidebar} 
-        isSidebarOpen={isSidebarOpen} 
-      />
-      <Sidebar 
+      <Navbar onToggleSidebar={toggleSidebar} isSidebarOpen={isSidebarOpen} />
+      <Sidebar
         isOpen={isMobileMenuOpen || isSidebarOpen}
         isMobile={isMobileMenuOpen}
         onClose={() => setIsMobileMenuOpen(false)}
       />
-      <main 
+      <main
         className={`relative transition-[margin] duration-300 ease-in-out pt-16
           ${isSidebarOpen ? 'md:ml-64' : 'md:ml-0'}
         `}
