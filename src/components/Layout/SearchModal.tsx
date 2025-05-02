@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { useNavigate } from '@tanstack/react-router'
 import docsData from '../../data/docs.json'
 
@@ -16,7 +16,7 @@ interface SearchResult {
 
 export const SearchModal = ({ isOpen, onClose }: SearchModalProps) => {
   const [searchQuery, setSearchQuery] = useState('')
-  const [results, setResults] = useState<SearchResult[]>([])
+  const [results, setResults] = useState<Array<SearchResult>>([])
   const [selectedIndex, setSelectedIndex] = useState(0)
   const navigate = useNavigate()
 
